@@ -1,1 +1,9 @@
-<p>input works!</p>
+<div class="field">
+  <label>{{ label }}</label>
+  <input [type]="type" [formControl]="control" />
+  <div *ngIf="showErrors()" class="ui pointing red basic label">
+    <div *ngFor="let error of control.errors | keyvalue">
+      {{ error.key }}
+    </div>
+  </div>
+</div>
