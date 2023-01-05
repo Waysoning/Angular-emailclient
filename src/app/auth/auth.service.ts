@@ -13,6 +13,11 @@ export interface SignupCredentials {
   passwordConfirmation: string;
 }
 
+export interface SigninCredentials {
+  username: string;
+  password: string;
+}
+
 interface SignupResponse {
   username: string;
 }
@@ -68,5 +73,15 @@ export class AuthService {
         this.signedIn$.next(false);
       })
     );
+  }
+
+  signin(credentials: SigninCredentials) {
+    return this.http
+      .post<SignedInResponse>(this.rootUrl + '/auth/signin', credentials)
+      .pipe(
+        tap(() => {
+          this.signedIn$.next(true);
+        })
+      );
   }
 }
