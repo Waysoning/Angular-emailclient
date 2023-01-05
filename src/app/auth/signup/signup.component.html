@@ -19,11 +19,13 @@
     *ngIf="
       authForm.controls['password'].touched &&
       authForm.controls['passwordConfirmation'].touched &&
-      authForm.errors?.['passwordsDontMatch']
+      authForm.errors
     "
     class="ui red basic label"
   >
-    <p>Passwords must match</p>
+    <p *ngIf="authForm.errors?.['passwordsDontMatch']">Passwords must match</p>
+    <p *ngIf="authForm.errors?.['noConnection']">Can't connect to server</p>
+    <p *ngIf="authForm.errors?.['unknownError']">Unknown error</p>
   </div>
   <div>
     <button class="ui submit button primary">Submit</button>

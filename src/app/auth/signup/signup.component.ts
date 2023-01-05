@@ -52,6 +52,13 @@ export class SignupComponent {
         next: (value) => {
           console.log(value);
         },
+        error: (err) => {
+          if (!err.status) {
+            this.authForm.setErrors({ noConnection: true });
+          } else {
+            this.authForm.setErrors({ unknownError: true });
+          }
+        },
       });
   }
 }
